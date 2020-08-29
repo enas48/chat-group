@@ -1,0 +1,14 @@
+.logo .material-icons{
+    color:  #F0402C;
+}
+.logo .text{
+    color:#282051;
+    font-weight: bold;
+}
+.card {
+    border-radius: 24px;
+}
+form .input-group-text{
+    background: none;
+    color: #828282;
+}
