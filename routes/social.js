@@ -1,0 +1,32 @@
+const passport=require('passport');
+
+module.exports=function(app){
+
+   //---------------------facebook route
+   app.get('/auth/facebook',passport.authenticate('facebook'));
+   app.get('/auth/facebook/callback',
+   passport.authenticate('facebook', { failureRedirect: '/auth/register' }),
+   function(req, res) {
+   // Successful authentication, redirect users page
+   //  req.session.user_id = req.user.id;
+       res.redirect('/users');
+   });
+
+     
+     //---------------------github route-------------------------
+   app.get('/auth/github',passport.authenticate('github'));
+   app.get('/auth/github/callback',
+   passport.authenticate('github', { failureRedirect: '/auth/register' }),
+   function(req,res)  {
+     res.redirect('/users');
+    });
+
+
+   //-------------------------google route--------------------------
+     app.get('/auth/google',passport.authenticate('google', { scope: ['profile'] }));
+     app.get('/auth/google/callback', 
+     passport.authenticate('google', { failureRedirect: '/auth/register' }),
+     function(req, res) {
+       res.redirect('/users');
+     });
+     }

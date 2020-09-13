@@ -1,0 +1,67 @@
+doctype html
+html(lang='en')
+ head
+   meta(charset="UTF-8")
+   meta(name="viewport" content="width=device-width, initial-scale=1.0")
+   mate(http-equiv="X-UA-Compatible" content="IE=edge")
+   link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+   link(href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet")
+   link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous")
+   link(href="../public/css/style.css" rel="stylesheet")
+   title chat group login
+
+   body
+     nav.nav-style.px-3.d-flex.justify-content-between.align-items-center.position-fixed.fixed-top
+         button.btn.navbar-button#sidebarCollapse(type="button")
+             span.material-icons.navbar-icon menu
+         .ml-auto
+             .drop-down
+                 button.btn.dropdown-toggle(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                     img.dropdown-img.img-fluid.rounded-circle(src=photo.img)
+                     span.pl-2.d-none.d-md-inline.text-capitalize #{username}   
+                 .dropdown-menu.bg-secondary.shadow-sm.px-3.mt-2(aria-labelledby="dropdownMenuButton")
+                     a.dropdown-item.p-2.d-flex.align-items-center(href="/users")
+                         span.material-icons.pr-2 account_circle
+                         span My Profile        
+                     a.dropdown-item.p-2.d-flex.align-items-center(href="/chat")
+                         span.material-icons.pr-2 people_alt 
+                         span Groupchat 
+                     .dropdown-divider
+                     a.dropdown-item.p-2.d-flex.align-items-center(href="/auth/logout") 
+                         span.material-icons.pr-2 exit_to_app 
+                         span Logout  
+     
+     .wrapper.w-100.d-flex
+         #sidebar
+                 h3.m-4.text-uppercase members 
+                 ul.list-unstyled
+                     each member in recent
+                         li.m-2.member
+                             a.p-2.d-flex.align-items-center.text-decoration-none#member-container(href='/users/' + member.username) 
+                                 img.profile-img.img-fluid.mr-3.rounded-circle(src=member.photo.img) 
+                                 span.text-capitalize.member-name #{member.username}
+                                
+         #content
+             .container-fluid 
+                 .mt-3.px-4
+                     p#num-users.text-light 
+                     ul.list-unstyled#messages
+                        
+                 form#message-form.my-4.position-fixed.fixed-bottom(action='')
+                     .form-group.position-relative.mb-0
+                         input#m.valid-input.form-control.form-control-lg.bg-secondary.shadow-lg.border-0(type="text" placeholder="Type a message here" autocomplete="off") 
+                         button.btn.position-absolute.bg-primary.d-flex.align-items-center.justify-content-center    
+                             span.material-icons chevron_right
+                               
+                        
+     
+      
+                    
+               
+     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")              
+     script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous")
+     script(src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.2/socket.io.min.js')
+     script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous")
+     script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous")
+     script(src="../public/client.js")
+     script(src="../public/client_chat.js")        

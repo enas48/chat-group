@@ -10,15 +10,15 @@ html(lang='en')
    link(href="../public/css/style.css" rel="stylesheet")
    title chat group login
 
-   body
-        nav.nav-style.px-3.d-flex.justify-content-between.align-items-center.position-fixed.fixed-top
-             a.logo.d-none.d-md-block.text-decoration-none(href="/")
+ body
+        nav.nav-style.mb-5.px-3.d-flex.justify-content-between.align-items-center.position-fixed.fixed-top
+            a.logo.d-none.d-md-block.text-decoration-none(href="/")
                  img.img-fluid(src="../public/images/logo.png" )
-             .ml-auto
+            .ml-auto
                  .drop-down
                      button.btn.dropdown-toggle(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
-                         img.dropdown-img.img-fluid.rounded-circle(src=photo.img)
-                         span.pl-2.text-capitalize #{username}   
+                         img.dropdown-img.img-fluid.rounded-circle(src=userphoto.img)
+                         span.pl-2.text-capitalize #{name}   
                      .dropdown-menu.bg-secondary.shadow-sm.px-3.mt-2(aria-labelledby="dropdownMenuButton")
                          a.dropdown-item.p-2.d-flex.align-items-center(href="/users")
                              span.material-icons.pr-2 account_circle
@@ -30,36 +30,35 @@ html(lang='en')
                          a.dropdown-item.p-2.d-flex.align-items-center(href="/auth/logout") 
                              span.material-icons.pr-2 exit_to_app 
                              span Logout  
-        .container.main-content  
-            header.text-center.m-2
-             h1.h2.text-capitalize.text-light.font-weight-bold.mb-4 Personal Info               
-            main.d-flex.py-2.mb-4
-               .col-md-8.mx-auto
-                 .card.overflow-hidden.shadow-lg.bg-secondary
-                     .card-header.d-flex.justify-content-between.align-items-center
-                         div.m-1
-                             h3.text-light profile
-                             p.font-weight-light some info may be visible to other people
-                         a.bg-primary.text-white.text-decoration-none.rounded.py-1.px-4(href="/users/update") Edit     
-                     ul.list-group.list-group-flush
-                         li.list-group-item.d-flex.align-items-center
-                             h6.text-uppercase.font-weight-bold.text-primary photo
-                             img.profile-img.img-fluid.rounded-circle(src=photo.img)
-                         li.list-group-item.d-flex.align-items-center
-                             h6.text-uppercase.font-weight-bold.text-primary name
-                             p.text-capitalize #{username}
-                         li.list-group-item.d-flex.align-items-center
-                             h6.text-uppercase.font-weight-bold.text-primary bio
-                             p #{bio}
-                         li.list-group-item.d-flex.align-items-center
-                             h6.text-uppercase.font-weight-bold.text-primary phone
-                             p #{phone}
-                         li.list-group-item.d-flex.align-items-center
-                             h6.text-uppercase.font-weight-bold.text-primary email
-                             p #{email}  
-                  
+        .container.main-content                         
+             header.text-center.m-2
+                 h1.h2.text-capitalize.text-light.font-weight-bold #{username} profile
+                 each message in messages
+                     .alert.alert-danger #{message}
+                                
+             main.d-flex.py-2
+                .col-md-8.mx-auto
+                     .card.overflow-hidden.shadow-lg.bg-secondary
+                         ul.list-group.list-group-flush
+                             li.list-group-item.d-flex.align-items-center
+                                 h6.text-uppercase.font-weight-bold.text-primary photo
+                                 img.profile-img.img-fluid.rounded-circle(src=photo.img)
+                             li.list-group-item.d-flex.align-items-center
+                                 h6.text-uppercase.font-weight-bold.text-primary name
+                                 p.text-capitalize #{username}
+                             li.list-group-item.d-flex.align-items-center
+                                 h6.text-uppercase.font-weight-bold.text-primary bio
+                                 p #{bio}
+                             li.list-group-item.d-flex.align-items-center
+                                 h6.text-uppercase.font-weight-bold.text-primary phone
+                                 p #{phone}
+                             li.list-group-item.d-flex.align-items-center
+                                 h6.text-uppercase.font-weight-bold.text-primary email
+                                 p #{email}  
+               
+               
         script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")              
         script(src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous")
         script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous")
         script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous")
-        script(src="../public/client.js")         
+        script(src="../public/client.js")   

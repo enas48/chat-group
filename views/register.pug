@@ -1,0 +1,83 @@
+doctype html
+html(lang='en')
+ head
+   meta(charset="UTF-8")
+   meta(name="viewport" content="width=device-width, initial-scale=1.0")
+   mate(http-equiv="X-UA-Compatible" content="IE=edge")
+   link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+   link(href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet")
+   link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous")
+   link(href="../public/css/style.css" rel="stylesheet")
+   title chat group
+
+   body
+     .container
+        nav.py-3.mb-4
+           a.logo.d-block.text-decoration-none(href="/")
+             img(src="../public/images/logo.png")
+        main.d-flex.py-2.mb-4
+           .col-md-8.col-lg-6.m-auto  
+               .card.shadow-lg.bg-secondary
+                   .card-body.p-4
+                       h1.text-center.font-weight-bold.text-light Register
+                       form(action='/auth/register', method='post')#register-form
+                           .form-group
+                               input.form-control.form-control-lg.rounded-0.m-0#register-name(type="text" name="username" autocomplete="off"
+                                  required) 
+                               label.label-name
+                                 .icon
+                                   span.material-icons.pr-2 person
+                                   span.align-top Name
+                           .name-err-msg
+
+                           .form-group
+                               input.form-control.form-control-lg.rounded-0.m-0#register-email(type="email" name="email" autocomplete="off" required)
+                               label.label-name
+                                 .icon
+                                   span.material-icons.pr-2 email
+                                   span.align-top Email
+                           .email-err-msg 
+                                  
+                           .form-group
+                               input.form-control.form-control-lg.rounded-0.m-0#register-password(type="password" name="password" required)
+                               label.label-name
+                                 .icon
+                                   span.material-icons.pr-2 https
+                                   span.align-top password
+                           .progress.w-50
+                               .progress-bar(role="progressbar" aria-valuemax="100")   
+                           .password-err-msg    
+              
+
+                           button.btn.my-4.w-100.register-btn.bg-primary.text-white(type="submit") Register 
+                             
+                           each message in messages
+                             if messages.error
+                               .alert.alert-danger #{message}
+                             else if messages.success  
+                               .alert.alert-success #{message}         
+                           #err-msg
+
+                       p.text-center or contine with
+                       ul.text-center.list-inline
+                         li.list-inline-item.social
+                           a(href='/auth/google') 
+                             img(src="../public/images/google.png")
+                        
+                         li.list-inline-item.social 
+                           a(href='/auth/facebook')
+                             img(src="../public/images/facebook.png")
+                        
+                         li.list-inline-item.social
+                           a(href='/auth/github')
+                             img(src="../public/images/github.png")
+                      
+                       p.mb-0.text-center Already a member? 
+                         a.text-primary.text-decoration-none(href='/auth/login') Login         
+                     
+
+        script( src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous")
+        script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous")
+        script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous")
+        script(src="../public/client.js" type="text/javascript" )
+        script(src="../public/validation.js" type="text/javascript")          

@@ -1,0 +1,87 @@
+doctype html
+html(lang='en')
+ head
+   meta(charset="UTF-8")
+   meta(name="viewport" content="width=device-width, initial-scale=1.0")
+   mate(http-equiv="X-UA-Compatible" content="IE=edge")
+   link(href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+   link(href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet")
+   link(href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous")
+   link(href="../public/css/style.css" rel="stylesheet")
+   title chat group login
+
+ body
+     nav.nav-style.mb-5.px-3.d-flex.justify-content-between.align-items-center.position-fixed.fixed-top
+        a.logo.d-none.d-md-block.text-decoration-none(href="/")
+            img.img-fluid(src="../public/images/logo.png" )
+        .ml-auto
+            .drop-down
+                button.btn.dropdown-toggle(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                     img.dropdown-img.img-fluid.rounded-circle(src=photo.img)
+                     span#username.pl-2.text-capitalize #{username}   
+                .dropdown-menu.bg-secondary.shadow-sm.px-3.mt-2(aria-labelledby="dropdownMenuButton")
+                    a.dropdown-item.p-2.d-flex.align-items-center(href="/users")
+                         span.material-icons.pr-2 account_circle
+                         span My Profile        
+                    a.dropdown-item.p-2.d-flex.align-items-center(href="/chat")
+                         span.material-icons.pr-2 people_alt 
+                         span Groupchat 
+                    .dropdown-divider
+                    a.dropdown-item.p-2.d-flex.align-items-center(href="/auth/logout") 
+                         span.material-icons.pr-2 exit_to_app 
+                         span Logout  
+     .container.main-content 
+           
+        main.d-flex.py-2.mb-5
+           .col-md-8.mx-auto
+                 a.text-primary.text-decoration-none.my-4.d-block(href="/users") 
+                     span.material-icons.align-middle chevron_left 
+                     span.align-top Back
+                 
+                 .card.overflow-hidden.shadow-lg.bg-secondary.p-3
+                     .card-title
+                         h3 Change Info
+                         p.text-muted.h5 changes will be reflected to every services 
+ 
+
+                     form#update-form(action='/users/update' enctype="multipart/form-data" method='post')
+                        .form-group
+                           input.valid-input.form-control.form-control-lg#fileElem(type="file" name="photo" required)
+                           label.label-name(for="fileElem")
+                             .icon
+                               span photo
+                        .form-group
+                           input.form-control.form-control-lg.rounded-0.m-0#update-name(type="text" name="username" autocomplete="off" required) 
+                           label.label-name
+                             .icon
+                               span Name
+                        .name-update-msg
+
+                        .form-group
+                           textarea.valid-input.form-control.rounded-0.m-0(type="text" name="bio" rows="3" required)
+                           label.label-name
+                             .icon
+                               span Bio
+
+                        .form-group
+                           input.form-control.form-control-lg.rounded-0.m-0#update-phone(type="text" name="phone" autocomplete="off") 
+                           label.label-name
+                             .icon
+                               span Phone
+                        .phone-err-msg
+                         
+                        .form-group
+                           input.form-control.form-control-lg.rounded-0.m-0#update-email(type="email" name="email" autocomplete="off" required)
+                           label.label-name
+                             .icon
+                               span Email
+                        .email-err-msg
+                        
+                        button.btn.btn-primary.my-3.px-4(type="submit") save
+          
+      
+     script( src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous")
+     script(src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous")
+     script(src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous")
+     script(src="../public/client.js" type="text/javascript" )
+     script(src="../public/validation.js" type="text/javascript")          
