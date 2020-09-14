@@ -5,7 +5,6 @@ const router=express.Router();
 router.get('/',(req,res,next)=>{
     const users = req.app.locals.users;
     users.find().toArray((err,recent)=>{
-        console.log(recent);
         res.render(process.cwd()+ '/views/chat',{recent,username:req.user.username,photo:req.user.photo})
     });
 });

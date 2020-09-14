@@ -70,13 +70,6 @@ mongo.connect(process.env.DATABASE, {useUnifiedTopology: true},(err,client)=>{
       console.log('database error' + err);
     }else{
       console.log('successful database connection');
-
-  // -----------------connect to HTTP server-----------
-   server.listen(HTTP_PORT, () => {
-  console.log('server started at 3000');
-});
-
-
  //---------authentication strategy------
  auth(app,db);
 
@@ -97,6 +90,10 @@ mongo.connect(process.env.DATABASE, {useUnifiedTopology: true},(err,client)=>{
    res.status(404).type('text').send('not found');
  });
 
+// -----------------connect to HTTP server-----------
+server.listen(HTTP_PORT, () => {
+  console.log('server started at 3000');
+});
 
 //------------start socket.io code-------------------- 
 
