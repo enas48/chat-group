@@ -22,6 +22,9 @@ const app = express();
 const server = http.createServer(app);
 
 
+const HTTP_PORT = process.env.PORT || 3000;
+
+
 //-------------set template engine-------------
   app.set('view engine','pug');
 
@@ -52,11 +55,7 @@ app.use(session({
     store: sessionStore
   }));
 
-// -----------------connect to HTTP server-----------
-server.listen((process.env.PORT || 3000), () => {
-  console.log('server started at 3000');
-}); 
-app.use('/',homeRoute);
+ 
 
 //---------------------connect to database------------------
 mongo.connect(process.env.DATABASE, {useUnifiedTopology: true},(err,client)=>{
@@ -71,6 +70,13 @@ mongo.connect(process.env.DATABASE, {useUnifiedTopology: true},(err,client)=>{
       console.log('database error' + err);
     }else{
       console.log('successful database connection');
+
+  // -----------------connect to HTTP server-----------
+   server.listen(HTTP_PORT, () => {
+  console.log('server started at 3000');
+});
+
+
  //---------authentication strategy------
  auth(app,db);
 
@@ -79,7 +85,7 @@ mongo.connect(process.env.DATABASE, {useUnifiedTopology: true},(err,client)=>{
  socialRoute(app);
 
  //--------routers handler---------------
-
+ app.use('/',homeRoute);
  app.use('/users',userRoute);
  app.use('/auth',authRoute)
  app.use('/chat',chatRoute);
@@ -90,7 +96,6 @@ mongo.connect(process.env.DATABASE, {useUnifiedTopology: true},(err,client)=>{
  app.use((req,res,next)=>{
    res.status(404).type('text').send('not found');
  });
-
 
 
 //------------start socket.io code-------------------- 
