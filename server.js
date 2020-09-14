@@ -56,6 +56,7 @@ app.use(session({
 server.listen((process.env.PORT || 3000), () => {
   console.log('server started at 3000');
 }); 
+app.use('/',homeRoute);
 
 //---------------------connect to database------------------
 mongo.connect(process.env.DATABASE, {useUnifiedTopology: true},(err,client)=>{
@@ -78,7 +79,7 @@ mongo.connect(process.env.DATABASE, {useUnifiedTopology: true},(err,client)=>{
  socialRoute(app);
 
  //--------routers handler---------------
- app.use('/',homeRoute);
+
  app.use('/users',userRoute);
  app.use('/auth',authRoute)
  app.use('/chat',chatRoute);
