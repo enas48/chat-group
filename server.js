@@ -22,9 +22,6 @@ const app = express();
 const server = http.createServer(app);
 
 
-const HTTP_PORT = process.env.PORT || 3000;
-
-
 //-------------set template engine-------------
   app.set('view engine','pug');
 
@@ -55,7 +52,10 @@ app.use(session({
     store: sessionStore
   }));
 
- 
+// -----------------connect to HTTP server-----------
+server.listen((process.env.PORT || 3000), () => {
+  console.log('server started at 3000');
+}); 
 
 //---------------------connect to database------------------
 mongo.connect(process.env.DATABASE, {useUnifiedTopology: true},(err,client)=>{
@@ -90,10 +90,7 @@ mongo.connect(process.env.DATABASE, {useUnifiedTopology: true},(err,client)=>{
    res.status(404).type('text').send('not found');
  });
 
-// -----------------connect to HTTP server-----------
-server.listen(HTTP_PORT, () => {
-  console.log('server started at 3000');
-});
+
 
 //------------start socket.io code-------------------- 
 
