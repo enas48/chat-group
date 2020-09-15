@@ -49,7 +49,7 @@ passport.deserializeUser((id,done)=>{
   passport.use(new FacebookStrategy({
     clientID:process.env.FACEBOOK_CLIENT_ID,
     clientSecret:process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/auth/facebook/callback'
+    callbackURL: '/auth/facebook/callback'
   },function(accessToken, refreshToken, profile, cb) {
     db.collection('users').findOneAndUpdate(
         {id: profile.id},
@@ -79,7 +79,7 @@ passport.deserializeUser((id,done)=>{
      passport.use(new GitHubStrategy({
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: "http://127.0.0.1:3000/auth/github/callback"
+        callbackURL: "/auth/github/callback"
       },
       function(accessToken, refreshToken, profile, cb) {
           db.collection('users').findOneAndUpdate(
@@ -109,7 +109,7 @@ passport.deserializeUser((id,done)=>{
     passport.use(new GoogleStrategy({
         clientID:process.env.GOOGLE_CLIENT_ID,
         clientSecret:process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://127.0.0.1:3000/auth/google/callback"
+        callbackURL: "/auth/google/callback"
       },
       function(accessToken, refreshToken, profile, cb) {
         db.collection('users').findOneAndUpdate(

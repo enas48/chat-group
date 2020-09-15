@@ -4,7 +4,7 @@ module.exports=function(app){
 
    //---------------------facebook route
    app.get('/auth/facebook',passport.authenticate('facebook'));
-   app.get('/auth/facebook/callback',
+   app.get('https://chat-group12.herokuapp.com/auth/facebook/callback',
    passport.authenticate('facebook', { failureRedirect: '/auth/register' }),
    function(req, res) {
    // Successful authentication, redirect users page
@@ -15,7 +15,7 @@ module.exports=function(app){
      
      //---------------------github route-------------------------
    app.get('/auth/github',passport.authenticate('github'));
-   app.get('/auth/github/callback',
+   app.get('https://chat-group12.herokuapp.com/auth/github/callback',
    passport.authenticate('github', { failureRedirect: '/auth/register' }),
    function(req,res)  {
      res.redirect('/users');
@@ -24,7 +24,7 @@ module.exports=function(app){
 
    //-------------------------google route--------------------------
      app.get('/auth/google',passport.authenticate('google', { scope: ['profile'] }));
-     app.get('/auth/google/callback', 
+     app.get('https://chat-group12.herokuapp.com/auth/google/callback', 
      passport.authenticate('google', { failureRedirect: '/auth/register' }),
      function(req, res) {
        res.redirect('/users');

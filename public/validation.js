@@ -12,7 +12,6 @@ $(document).ready(function(){
           
         $('#register-name').blur(function(){   
           var username = $(this).val();
-          console.log(username);
           // validate input name in database if length > 2
           if(username.length > 2){
               $.ajax({
