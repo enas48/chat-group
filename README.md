@@ -22,9 +22,16 @@
 * responsive webpages
 * you can authenticate in app and users will save in databasee 
 * you can authenticate with social media like (facebook -google- github).
+
+* form validation before sent to database by ajax.
+
+* in profile page 
+  * you can go edit page and update your information and your avater image.
+
 * in chat page 
+  * you can see all users in app and show their profile 
   * you can see online state on user who are join the chat in sidebar.
-  * notifcation when other user joined or left the app.
+  * notifcation when other user joined or left the chat.
   * notifcation when other user type a message
   ---
 * ###  inspired by [@devchallengesio](@devchallengesio)
