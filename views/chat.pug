@@ -15,13 +15,13 @@ html(lang='en')
    body
      nav.nav-style.px-3.d-flex.justify-content-between.align-items-center.position-fixed.fixed-top
          button.btn.navbar-button#sidebarCollapse(type="button")
-             span.material-icons.navbar-icon menu
+             span.material-icons.navbar-icon menu  
          .ml-auto
              .drop-down
-                 button.btn.dropdown-toggle(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
+                 button.btn.btn-lg.dropdown-toggle(type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false")
                      img.dropdown-img.img-fluid.rounded-circle(src=photo.img)
-                     span.pl-2.d-none.d-md-inline.text-capitalize #{username}   
-                 .dropdown-menu.bg-secondary.shadow-sm.px-3.mt-2(aria-labelledby="dropdownMenuButton")
+                     span.pl-2.d-none.d-md-inline.text-capitalize#username-chat #{username}   
+                 .dropdown-menu.dropdown-menu-right.bg-secondary.shadow-sm.px-3.mt-2(aria-labelledby="dropdownMenuButton")
                      a.dropdown-item.p-2.d-flex.align-items-center(href="/users")
                          span.material-icons.pr-2 account_circle
                          span My Profile        
@@ -46,15 +46,15 @@ html(lang='en')
          #content
              .container-fluid 
                  .mt-3.px-4
-                     p#num-users.text-light 
                      ul.list-unstyled#messages
-                        
-                 form#message-form.my-4.position-fixed.fixed-bottom(action='')
-                     .form-group.position-relative.mb-0
-                         input#m.valid-input.form-control.form-control-lg.bg-secondary.shadow-lg.border-0(type="text" placeholder="Type a message here" autocomplete="off") 
-                         button.btn.position-absolute.bg-primary.d-flex.align-items-center.justify-content-center    
-                             span.material-icons chevron_right
-                               
+                 .form-wrapper.position-fixed.fixed-bottom.my-3  
+                     p#typing.my-2.text-primary      
+                     form#message-form(action='')
+                         .form-group.position-relative.mb-0
+                             input#m.form-control.form-control-lg.bg-secondary.text-light.shadow-lg.border-0(type="text" placeholder="Type a message here" autocomplete="off") 
+                             button.btn.position-absolute.bg-primary.d-flex.align-items-center.justify-content-center    
+                                 span.material-icons chevron_right
+                     
                         
      
       

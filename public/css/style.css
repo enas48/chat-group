@@ -7402,8 +7402,7 @@ nav {
   height: 40px; }
 
 .dropdown-menu {
-  border-radius: 12px;
-  top: 4px !important; }
+  border-radius: 12px; }
 
 .dropdown-item {
   color: #e0e0e0; }
@@ -7467,13 +7466,13 @@ nav {
 .message {
   font-size: 1.2rem; }
   .message h5 {
-    font-size: calc(1.265rem + 0.18vw); }
+    font-size: calc(1.255rem + 0.06vw); }
     @media (min-width: 1200px) {
       .message h5 {
-        font-size: 1.4rem; } }
+        font-size: 1.3rem; } }
 
 .time {
-  font-size: 1.1rem; }
+  font-size: 1rem; }
 
 .member-name {
   position: relative; }
@@ -7501,24 +7500,25 @@ nav {
   right: -15px; }
 
 /*----------------massage form----------------*/
-#message-form {
-  left: 280px;
+#notfiction {
+  color: #28a745; }
+
+.form-wrapper {
+  margin-left: 280px;
   width: calc(100% - 280px);
   padding-left: 45px;
   padding-right: 45px;
   z-index: 2; }
-  #message-form input {
-    color: #e0e0e0; }
-  #message-form .form-group .btn {
+  .form-wrapper .form-group .btn {
     right: 4px;
     top: 4px;
     color: #e0e0e0;
     height: 40px;
     width: 40px; }
-  #message-form .form-group .btn .material-icons {
+  .form-wrapper .form-group .btn .material-icons {
     font-size: calc(1.375rem + 1.5vw); }
     @media (min-width: 1200px) {
-      #message-form .form-group .btn .material-icons {
+      .form-wrapper .form-group .btn .material-icons {
         font-size: 2.5rem; } }
 
 /*-------respnsive side bar----*/
@@ -7534,9 +7534,9 @@ nav {
   #content {
     width: 100%;
     margin-left: 0; }
-  #massege-form {
+  .form-wrapper {
     width: 100%;
-    left: 0; } }
+    margin-left: 0; } }
 
 /* -----custom scrollbar-------*/
 /* width */

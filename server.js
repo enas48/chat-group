@@ -61,10 +61,9 @@ app.use(session({
 mongo.connect(process.env.DATABASE, {useUnifiedTopology: true},(err,client)=>{
       let db = client.db('chatGroupapp');
       const users = db.collection('users');
- 
+      const chatMessage=db.collection('chatMessage');
       //save database in app to use it later
       app.locals.users = users;
-
       
     if(err){
       console.log('database error' + err);
@@ -74,7 +73,6 @@ mongo.connect(process.env.DATABASE, {useUnifiedTopology: true},(err,client)=>{
  auth(app,db);
 
  //--------------social routes
-
  socialRoute(app);
 
  //--------routers handler---------------
@@ -90,17 +88,17 @@ mongo.connect(process.env.DATABASE, {useUnifiedTopology: true},(err,client)=>{
    res.status(404).type('text').send('not found');
  });
 
-// -----------------connect to HTTP server-----------
+/* -----------------connect to HTTP server-----------*/
 server.listen(HTTP_PORT, () => {
   console.log('server started at 3000');
 });
 
-//------------start socket.io code-------------------- 
+/*-------------start socket.io code--------------------*/ 
 
-//setup socket.io
+//--------setup socket.io
 const io=require('socket.io')(server);
 
-//authe nticate with socket
+//-------authenticate with socket
 io.use(passportSocketIo.authorize({
   cookieParser:cookieParser,
   key: 'express.sid',
@@ -108,43 +106,73 @@ io.use(passportSocketIo.authorize({
   store:sessionStore
 })); 
 
-var currentUsers=0;
+
 var onlineusers=[]
 io.on('connection',socket=>{
-  
-   /*---------------emit current users numbers -------------------*/
-   ++currentUsers;
+
+  /*------------------------ get chats from mongodb collection----------------------*/
+      chatMessage.find().limit(100).toArray((err,data)=>{
+        if(err){throw err}
+        // emit old mesaages when user connect
+        socket.emit('output old messages',data) ;
+    
+      });
+    
+   /*---------------emit current users cpnnected-------------------*/
    console.log('user ' + socket.request.user.username + ' connected')
-   io.emit('user',{name: socket.request.user.username,currentUsers,connected:true});
+   socket.broadcast.emit('user',{name: socket.request.user.username,connected:true});
+   
+   
+    /*--------------emit online users in app to change state--------------------*/
+    onlineusers.push({name: socket.request.user.username});
+    console.log(onlineusers);
+    io.emit('available users', {availableUsers:onlineusers});   
 
-  /*--------------emit online users in app to change state--------------------*/
-   onlineusers.push({name: socket.request.user.username});
-   console.log(onlineusers);
-   io.emit('available users', {availableUsers:onlineusers});
- 
-  /*-------------listen to socket for event chat message---------------*/
-  socket.on('chat message',(message)=>{
-  
-    //find user on database and take his info(photo) to send to all users 
+
+
+   /*-------------listen to socket for comming chat message---------------*/
+   socket.on('chat message',(data)=>{
     const username=socket.request.user.username;
-    users.findOne({username},function(err,recent){
-        var photo = recent.photo;
-        var  time=moment().format('h:mm a');
+    const recivedMessage=data.message;
 
-        //when recived message and photo we emit the event to all sockets
-        io.emit('chat message' , {name:socket.request.user.username,message,photo,time});
-    });
+    //find user on database and take his info(photo) to send to all users
+      users.findOne({username},function(err,recent){
+        if(err){throw err};
+          var photo = recent.photo;
+          var  time=moment().format('h:mm a');
 
- }) 
- 
- 
+          if(username==='' || recivedMessage ===''){
+            console.log('please sent name or message');
+
+          }else{
+                //add message to data base
+          chatMessage.insertOne({name:username,message:recivedMessage,time,photo},function(){
+            
+              //when recived message and photo we emit the event to all sockets
+            io.emit('output messages',{name:username,message:recivedMessage,time,photo})
+          });
+          }
+      });
+ }) ;
+
+
+ /*-------------------listen when Someone is typing msg--------------------*/
+ socket.on('typing',(data)=>{
+   socket.broadcast.emit('notify typing',{username:socket.request.user.username})
+ })
+
+ /*-------------------listen when stop typing--------------------*/
+ socket.on('stop typing',(data)=>{
+  socket.broadcast.emit('notify stopTyping')
+})
+
+
   socket.on('disconnect',()=>{
-     /*---------------emit current users numbers after one user disconnect-------------------*/
-     --currentUsers;
+     /*---------------emit notification when user left chat------------------*/
      console.log('user ' + socket.request.user.username + ' disconnected')
-     io.emit('user',{name:socket.request.user.username ,currentUsers,connected:false});
+     io.emit('user',{name:socket.request.user.username,connected:false});
 
-     /*---------------emit online users after one user disconnect-------------------*/
+     /*---------------emit online users state after one user disconnect-------------------*/
       onlineusers = onlineusers.filter((elem)=>{
       return elem.name !== socket.request.user.username;
     });

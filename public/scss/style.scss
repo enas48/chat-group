@@ -167,12 +167,13 @@ nav {height: 65px;}
 }
 
  /*------------------------ profile page-------------*/   
-
  .profile-img{width: 50px;height: 50px;}  
+
+ 
 /* ----------------style dropdown-------------*/
 .btn.dropdown-toggle{box-shadow: none;color: #e0e0e0; } 
 .dropdown-img{width: 40px;height: 40px;}
-.dropdown-menu{border-radius: 12px;top: 4px!important;}
+.dropdown-menu{border-radius: 12px; }
 .dropdown-item{ color: #e0e0e0;}
 .dropdown-item:last-child{color:  #EB5757;}
 .dropdown-item:hover,
@@ -232,9 +233,9 @@ nav {height: 65px;}
 }
 .message{
     @include font-size(1.2rem);
-    h5{ @include font-size(1.4rem);}
+    h5{ @include font-size(1.3rem);}
 }
-.time{ font-size: 1.1rem;}
+.time{@include font-size(1rem);}
 .member-name{ position: relative;} 
 .member-name::after{
     position: absolute;
@@ -261,13 +262,15 @@ nav {height: 65px;}
 
 
 /*----------------massage form----------------*/
-#message-form{
-    left: 280px;
+#notfiction{
+    color: #28a745;;
+}
+.form-wrapper{
+    margin-left: 280px;
     width:  calc(100% - 280px);
     padding-left: 45px;
     padding-right:45px ;
     z-index: 2;
-    input{ color: #e0e0e0; }
     .form-group .btn{
         right: 4px;
         top: 4px;
@@ -277,6 +280,7 @@ nav {height: 65px;}
     }
     .form-group .btn .material-icons{@include font-size(2.5rem); }
 }
+
 
 /*-------respnsive side bar----*/
 @media (max-width:768px){
@@ -288,7 +292,7 @@ nav {height: 65px;}
     #sidebar.active {transform: translateX(0);}
     #sidebarCollapse{  display: block;}
     #content{ width:  100%;  margin-left: 0; } 
-    #massege-form{width: 100%;left: 0;} 
+    .form-wrapper{width: 100%;margin-left:0;} 
 }
 
 /* -----custom scrollbar-------*/
