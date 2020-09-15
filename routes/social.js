@@ -24,7 +24,7 @@ module.exports=function(app){
 
    //-------------------------google route--------------------------
      app.get('/auth/google',passport.authenticate('google', { scope: ['profile'] }));
-     app.get('/auth/google/callback', 
+     app.get('https://chat-group12.herokuapp.com/auth/google/callback', 
      passport.authenticate('google', { failureRedirect: '/auth/register' }),
      function(req, res) {
        res.redirect('/users');
