@@ -7,15 +7,6 @@
 ## demo
 * [https://chat-group12.herokuapp.com/](https://chat-group12.herokuapp.com/)
 
-## setup
-
-* clone this repo to your local machine using [https://github.com/enas48/chat-group.git](https://github.com/enas48/chat-group.git)
-
-* install the packages first `npm install`
-
-* `npm run start`
-
-* open your browser and run app  [http://localhost:3000/](http://localhost:3000/)
 ---
 
 ## features
