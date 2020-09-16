@@ -9,6 +9,25 @@
 
 ---
 
+## setup
+
+* clone this repo to your local machine using [https://github.com/enas48/chat-group.git](https://github.com/enas48/chat-group.git)
+
+* install the packages first `npm install`
+
+* `npm run start`
+
+* open your browser and run app  [http://127.0.0.1:3000](http://127.0.0.1:3000)
+
+* in authStrategy remove comment from
+```
+ var absoluteUri="http://127.0.0.1:3000";
+ ```
+  and add comment to
+  ``` 
+  // var absoluteUri = 'https://chat-group12.herokuapp.com'; 
+```
+---
 ## features
 * responsive webpages
 * you can authenticate in app and users will save in databasee 
@@ -25,5 +44,5 @@
   * notifcation when other user joined or left the chat.
   * notifcation when other user type a message
   ---
-* ###  inspired by [@devchallengesio](@devchallengesio)
+* ###  inspired by [@devchallengesio](https://devchallenges.io/challenges/UgCqszKR7Q7oqb4kRfI0)
 

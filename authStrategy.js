@@ -45,11 +45,14 @@ passport.deserializeUser((id,done)=>{
 }
 ));
 
+  //var absoluteUri ="http://127.0.0.1:3000"; //development;
+  var absoluteUri = 'https://chat-group12.herokuapp.com'; //production
+
   //---------------------facebook authentication strategy-----------------
   passport.use(new FacebookStrategy({
     clientID:process.env.FACEBOOK_CLIENT_ID,
     clientSecret:process.env.FACEBOOK_CLIENT_SECRET,
-    callbackURL: '/auth/facebook/callback'
+    callbackURL: absoluteUri  +'/auth/facebook/callback'
   },function(accessToken, refreshToken, profile, cb) {
     db.collection('users').findOneAndUpdate(
         {id: profile.id},
@@ -77,9 +80,10 @@ passport.deserializeUser((id,done)=>{
 
     //--------------------github authentication strategy--------------
      passport.use(new GitHubStrategy({
+        
         clientID: process.env.GITHUB_CLIENT_ID,
         clientSecret: process.env.GITHUB_CLIENT_SECRET,
-        callbackURL: "/auth/github/callback"
+        callbackURL: absoluteUri + "/auth/github/callback"
       },
       function(accessToken, refreshToken, profile, cb) {
           db.collection('users').findOneAndUpdate(
@@ -109,7 +113,7 @@ passport.deserializeUser((id,done)=>{
     passport.use(new GoogleStrategy({
         clientID:process.env.GOOGLE_CLIENT_ID,
         clientSecret:process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "/auth/google/callback"
+        callbackURL: absoluteUri + "/auth/google/callback"
       },
       function(accessToken, refreshToken, profile, cb) {
         db.collection('users').findOneAndUpdate(
