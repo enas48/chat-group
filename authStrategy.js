@@ -45,7 +45,8 @@ passport.deserializeUser((id,done)=>{
 }
 ));
 
-  var absoluteUri ="http://127.0.0.1:3000"|| 'https://chat-group12.herokuapp.com';
+  //var absoluteUri ="http://127.0.0.1:3000"; //development;
+  var absoluteUri = 'https://chat-group12.herokuapp.com'; //production
 
   //---------------------facebook authentication strategy-----------------
   passport.use(new FacebookStrategy({
