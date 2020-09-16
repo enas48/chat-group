@@ -19,14 +19,6 @@
 
 * open your browser and run app  [http://127.0.0.1:3000](http://127.0.0.1:3000)
 
-* in authStrategy remove comment from
-```
- var absoluteUri="http://127.0.0.1:3000";
- ```
-  and add comment to
-  ``` 
-  // var absoluteUri = 'https://chat-group12.herokuapp.com'; 
-```
 ---
 ## features
 * responsive webpages
